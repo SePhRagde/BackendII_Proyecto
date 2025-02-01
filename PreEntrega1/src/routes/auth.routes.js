@@ -18,6 +18,6 @@ authRouter.post(
 
 authRouter.get(
     "/current",
-    passport.authenticate("jwt", { session: false}),
+    passport.authenticate("current", { session: false}),
     AuthController.current
 )

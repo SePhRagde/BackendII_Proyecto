@@ -2,7 +2,7 @@ import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { Strategy as JWTStrategy, ExtractJwt } from "passport-jwt";
 import { userModel } from "../models/user.model.js";
-import { verifyPassword } from "../utils/hash.js";
+import { createHash, verifyPassword } from "../utils/hash.js";
 import { JWT_SECRET } from "../utils/jwt.js";
 
 export function initializePassport() {
@@ -18,11 +18,13 @@ export function initializePassport() {
                 if (!email || !password || !firstName || !lastName || !age) {
                     return done(null, false, { message: "All fields are required" });
                 }
+                
+                const hashedPassword = await createHash(password);
 
                 try {
                     const user = await userModel.create({
                         email,
-                        password,
+                        password: hashedPassword,
                         first_name: firstName,
                         last_name: lastName,
                         age,

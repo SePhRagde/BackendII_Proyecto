@@ -18,10 +18,8 @@ app.use(express.urlencoded( { extended: true}));
 initializePassport();
 app.use(passport.initialize());
 
-const mongoURI = "mongodb+srv://sephragde:<db_password>@finalbackendi.gujqk.mongodb.net/"
-
 mongoose
-    .connect(mongoURI)
+    .connect("mongodb+srv://sephragde:PE0UxxhjVGZZJ5Ie@finalbackendi.gujqk.mongodb.net/")
     .then(() => console.log("Connected to MongoDB"))
     .catch((error) => console.error(error))
 

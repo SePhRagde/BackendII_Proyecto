@@ -1,5 +1,5 @@
 import { Router } from "express";
-import passport, { session } from "passport";
+import passport from "passport";
 import { AuthController } from "../controllers/auth.controller.js";
 
 export const authRouter = Router();
@@ -11,7 +11,7 @@ authRouter.post(
 );
 
 authRouter.post(
-    "/Register",
+    "/register",
     passport.authenticate("register", { session: false}),
     AuthController.register
 );
